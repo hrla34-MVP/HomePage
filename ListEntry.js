@@ -56,10 +56,10 @@ class ListEntry extends Component {
       {!this.state.modalVisible ? (
         <Swipeable renderRightActions={this.RightAction} renderLeftActions={this.LeftAction}>
           <View style={styles.buttonStyle}>
-            {this.state.showEdit ? 
+            {/* {this.state.showEdit ? 
             <TouchableOpacity style={styles.editButton}>
               <Text>Edit</Text>
-            </TouchableOpacity>: null}
+            </TouchableOpacity>: null} */}
             <TouchableOpacity 
               onPress={this.onPressButton}
               onLongPress={this.onLongPressButton}
@@ -67,8 +67,8 @@ class ListEntry extends Component {
               underlayColor="white">
               <View>
                 {this.state.currentStatus ? 
-                <MaterialCommunityIcons name="circle-outline" color={'white'} size={35} /> :
-                <MaterialCommunityIcons name="circle-outline" color={'grey'} size={35} /> }
+                <MaterialCommunityIcons name="circle-outline" color={'white'} size={70} /> :
+                <MaterialCommunityIcons name="circle-outline" color={'grey'} size={70} /> }
                  {/* <Image 
               source={require('./assets/circle_v2.png')}
                  style={{ width: 50, height: 50, borderColor: 'blue'}}/> :
@@ -77,10 +77,10 @@ class ListEntry extends Component {
                  style={{ width: 50, height: 50, borderColor: 'red'}}/> } */}
               </View> 
             </TouchableOpacity>
-            {this.state.showEdit ? 
+            {/* {this.state.showEdit ? 
             <TouchableOpacity style={styles.deleteButton}>
               <Text>Delete</Text>
-            </TouchableOpacity>: null}
+            </TouchableOpacity>: null} */}
           </View>
         </Swipeable>
       ) : ( 
@@ -89,33 +89,33 @@ class ListEntry extends Component {
           animationType='fade'
           transparent={false}
           visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
+          // onRequestClose={() => {
+          //   alert('Modal has been closed.');
+          // }}
+          >
           <View style={styles.modalContainer}>
           <TouchableOpacity
-              onPress={this.editTodo}>
-              <Text>
-                Edit
-              </Text>
+              onPress={this.editTodo}
+              style={styles.editButton}>
+              <MaterialCommunityIcons name="pencil-circle-outline" color={'green'} size={50} />
+
             </TouchableOpacity>
             <TouchableOpacity 
               onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
               }}>
-              <MaterialCommunityIcons name="circle-outline" color={'white'} size={35} />
-              {/* <Image source={require('./assets/circle_v2.png')}/> */}
+              <MaterialCommunityIcons name="circle-outline" color={'white'} size={100} />
               </TouchableOpacity>
             <TouchableOpacity
-              onPress={this.deleteTodo}>
-              <Text>
-                Delete
-              </Text>
+              onPress={this.deleteTodo}
+              style={styles.deleteButton}>
+              <MaterialCommunityIcons name="minus-circle-outline" color={'red'} size={50} />
+
             </TouchableOpacity>
           </View>
         </Modal>
         </View>
-      )}
+      )}  
       </View> 
     )
   }
@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     backgroundColor: '#141414',
-    flex: 1
+    justifyContent: "center",
+    alignContent: "center"
   }
 
 });

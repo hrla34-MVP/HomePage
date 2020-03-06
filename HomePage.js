@@ -54,26 +54,13 @@ export default HomePage;
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#141414',
-  },
   scrollView: {
-    flex: 1,
-  },
-  text: {
-    fontSize: 42,
   },
   mainContainer: {
     justifyContent: 'center',
     flex: 1,
     paddingTop: 20,
     backgroundColor: '#141414',
-  },
-  footerContainer: {
-    justifyContent: 'center',
-    height: "8%",
-    backgroundColor: 'purple'
   },
   title: {
     color: 'white',

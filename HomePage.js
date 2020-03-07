@@ -8,14 +8,14 @@ import BrianApp from './BrianApp.js'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const exampleData = [
-  {name: "home", alert: true, status: false, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "gym", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "work", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "qt", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "coffee", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "Marco", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "Christian", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'},
-  {name: "BUHRYAN", alert: true, status: true, image: 'https://image.flaticon.com/icons/svg/846/846551.svg'}
+  {name: "home", alert: true, status: false, image: 'home'},
+  {name: "gym", alert: true, status: true, image: 'dumbbell'},
+  {name: "work", alert: true, status: true, image: 'office-building'},
+  {name: "qt", alert: true, status: true, image: 'home-heart'},
+  {name: "coffee", alert: true, status: true, image: 'coffee'},
+  {name: "Marco", alert: true, status: true, image: 'home-account'},
+  {name: "Anthony", alert: true, status: true, image: 'home-account'},
+  {name: "BUHRYAN", alert: true, status: true, image: 'home-account'}
 ]
 
 class HomePage extends Component {
@@ -39,10 +39,7 @@ class HomePage extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={true}>
-          <Text style={styles.title}>
-            BAMK!
-          </Text>
+        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
           <List todos={this.state.todos}/>
         </ScrollView>
       </View>

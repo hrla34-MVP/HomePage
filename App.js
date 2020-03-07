@@ -9,16 +9,15 @@ import HomePage from './HomePage.js'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-// const HeaderBar = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
-// function HeaderTabs() {
-//   return(
-//     <HeaderBar.Navigator>
-
-//     </HeaderBar.Navigator>
-//   )
-// }
+function MyHeader() {
+  return(
+    <View style={styles.headerContainer}>
+      {/* <Text style={styles.headerText}>BAMK</Text> */}
+    </View>
+  )
+}
 
 function MyTabs() {
   return (
@@ -70,17 +69,24 @@ function MyTabs() {
 export default function App() {
     return (
       <NavigationContainer>
+        <MyHeader/>
         <MyTabs />
       </NavigationContainer>
     )
   }
 
-  // const styles = StyleSheet.create({
-  //   footer: {
-  //     color: 'blue',
-  //     backgroundColor: 'blue'
-  //   }
-  // })
+  const styles = StyleSheet.create({
+    headerContainer: {
+      height: '10%',
+      backgroundColor: 'black',
+      borderBottomColor: 'white'
+    },
+    headerText: {
+      color: 'white',
+      fontSize: 50,
+      textAlign: 'center'
+    }
+  })
 
 
 // const styles = StyleSheet.create({

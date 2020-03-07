@@ -8,14 +8,14 @@ import BrianApp from './BrianApp.js'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const exampleData = [
-  {name: "home", alert: true, status: false, image: 'home'},
-  {name: "gym", alert: true, status: true, image: 'dumbbell'},
-  {name: "work", alert: true, status: true, image: 'office-building'},
-  {name: "qt", alert: true, status: true, image: 'home-heart'},
-  {name: "coffee", alert: true, status: true, image: 'coffee'},
-  {name: "Marco", alert: true, status: true, image: 'home-account'},
-  {name: "Anthony", alert: true, status: true, image: 'home-account'},
-  {name: "BUHRYAN", alert: true, status: true, image: 'home-account'}
+  {name: "home", helloImHere: false, status: false, image: 'home'},
+  {name: "gym", helloImHere: false, status: true, image: 'dumbbell'},
+  {name: "work", helloImHere: true, status: true, image: 'office-building'},
+  {name: "qt", helloImHere: false, status: true, image: 'home-heart'},
+  {name: "coffee", helloImHere: false, status: true, image: 'coffee'},
+  {name: "school", helloImHere: false, status: true, image: 'school'},
+  {name: "church", helloImHere: false, status: true, image: 'church'},
+  {name: "BUHRYAN", helloImHere: false, status: true, image: 'home-account'}
 ]
 
 class HomePage extends Component {

@@ -25,10 +25,12 @@ function MyTabs() {
       initialRouteName="HomePage"
       tabBarOptions={{
         activeTintColor: '#e91e63',
+        inactiveTintColor: 'white',
         showLabel: false,
         keyboardHidesTabBar: true,
         style: {
-          backgroundColor: 'black'
+          backgroundColor: 'black',
+          borderTopColor: 'black',
         }
       }}
     >
@@ -38,7 +40,7 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Todos',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="format-list-bulleted" color={'white'} size={35} />
+            <MaterialCommunityIcons name="format-list-bulleted" color={color} size={35} />
           ),
         }}
       />
@@ -48,7 +50,7 @@ function MyTabs() {
         options={{
           tabBarLabel: 'HomePage',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={'white'} size={35} />
+            <MaterialCommunityIcons name="home-variant" color={color} size={35} />
           ),
         }}
       />
@@ -58,7 +60,7 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Address',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="map-marker" color={'white'} size={35} />
+            <MaterialCommunityIcons name="map-marker" color={color} size={35} />
           ),
         }}
       />

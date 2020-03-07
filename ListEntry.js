@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Alert, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Animated, Easing, Alert, TouchableHighlight, Image } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+// import AnimatedColor from './AnimatedColor.js';
 
 class ListEntry extends Component {
   constructor(props) {
@@ -45,10 +45,17 @@ class ListEntry extends Component {
     )
   }
 
-  //if I want to add a left action
-  LeftAction = () => {
+  editTodo = () => {
+    this.setModalVisible(!this.state.modalVisible);
   }
 
+  deleteTodo = () => {
+    this.setModalVisible(!this.state.modalVisible);
+  }
+
+  //if trigger value:true,
+  //animate it else dont.
+  //need an animated component for this to work properly.
 
   render() {
     return(
@@ -59,12 +66,14 @@ class ListEntry extends Component {
             <TouchableOpacity 
               onPress={this.onPressButton}
               onLongPress={this.onLongPressButton}
-              delayLongPress={200}
+              delayLongPress={150}
               underlayColor="white">
               <View>
-                {this.state.currentStatus ? 
+                {this.props.todo.helloImHere && this.state.currentStatus ? 
+                <MaterialCommunityIcons name={this.props.todo.image} color={'#1aff1a'} size={70} /> : (
+                this.state.currentStatus ? 
                 <MaterialCommunityIcons name={this.props.todo.image} color={'white'} size={70} /> :
-                <MaterialCommunityIcons name={this.props.todo.image} color={'grey'} size={70} /> }
+                <MaterialCommunityIcons name={this.props.todo.image} color={'#404040'} size={70} /> )}
               </View> 
             </TouchableOpacity>
           </View>
@@ -81,7 +90,7 @@ class ListEntry extends Component {
           // }}
           >
           <View style={styles.modalContainer}>
-          <TouchableOpacity
+            <TouchableOpacity
               onPress={this.editTodo}
               style={styles.editButton}>
               <MaterialCommunityIcons name="pencil-circle-outline" color={'green'} size={80} />
@@ -91,7 +100,9 @@ class ListEntry extends Component {
               onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
               }}>
-              <MaterialCommunityIcons name={this.props.todo.image} color={'white'} size={160} />
+              {this.state.currentStatus ?
+                <MaterialCommunityIcons name={this.props.todo.image} color={'white'} size={160} /> :
+                <MaterialCommunityIcons name={this.props.todo.image} color={'#404040'} size={160} /> }
               </TouchableOpacity>
             <TouchableOpacity
               onPress={this.deleteTodo}
@@ -146,3 +157,4 @@ const styles = StyleSheet.create({
 });
 
 export default ListEntry;
+

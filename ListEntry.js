@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Animated, Easing, Alert, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-// import AnimatedColor from './AnimatedColor.js';
+
 
 class ListEntry extends Component {
   constructor(props) {
@@ -36,7 +36,6 @@ class ListEntry extends Component {
     })
   }
 
-  
   RightAction = () => {
     return(
     <View style={styles.rightAction}>
@@ -52,10 +51,6 @@ class ListEntry extends Component {
   deleteTodo = () => {
     this.setModalVisible(!this.state.modalVisible);
   }
-
-  //if trigger value:true,
-  //animate it else dont.
-  //need an animated component for this to work properly.
 
   render() {
     return(
@@ -79,15 +74,11 @@ class ListEntry extends Component {
           </View>
         </Swipeable>
       ) : ( 
-        // style={styles.modalSuperContainer}
         <View>
         <Modal
           animationType='fade'
           transparent={true}
           visible={this.state.modalVisible}
-          // onRequestClose={() => {
-          //   alert('Modal has been closed.');
-          // }}
           >
           <View style={styles.modalContainer}>
             <TouchableOpacity
@@ -149,11 +140,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  // modalSuperContainer: {
-  //   justifyContent: "center",
-  //   alignContent: "center",
-  // }
-
 });
 
 export default ListEntry;

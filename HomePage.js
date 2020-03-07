@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, } from 'react-native';
 import List from './List.js';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MarcoApp from './MarcoApp.js'
-import BrianApp from './BrianApp.js'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const exampleData = [
   {name: "home", helloImHere: false, status: false, image: 'home'},

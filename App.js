@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import MarcoApp from './MarcoApp.js'
 import BrianApp from './BrianApp.js'
 import HomePage from './HomePage.js'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-const Tabs = createBottomTabNavigator();
+const FooterBar = createBottomTabNavigator();
 
 function MyHeader() {
   return(
-    <View style={styles.headerContainer}>
-      {/* <Text style={styles.headerText}>BAMK</Text> */}
-    </View>
+    <View style={styles.headerContainer}></View>
   )
 }
 
-function MyTabs() {
+function MyFooterBar() {
   return (
-    <Tabs.Navigator
+    <FooterBar.Navigator
       initialRouteName="HomePage"
       tabBarOptions={{
         activeTintColor: '#e91e63',
@@ -34,7 +31,7 @@ function MyTabs() {
         }
       }}
     >
-      <Tabs.Screen
+      <FooterBar.Screen
         name="Todos"
         component={BrianApp}
         options={{
@@ -44,7 +41,7 @@ function MyTabs() {
           ),
         }}
       />
-      <Tabs.Screen
+      <FooterBar.Screen
         name="HomePage"
         component={HomePage}
         options={{
@@ -54,7 +51,7 @@ function MyTabs() {
           ),
         }}
       />
-      <Tabs.Screen
+      <FooterBar.Screen
         name="Address"
         component={MarcoApp}
         options={{
@@ -64,7 +61,7 @@ function MyTabs() {
           ),
         }}
       />
-    </Tabs.Navigator>
+    </FooterBar.Navigator>
   );
 }
 
@@ -72,7 +69,7 @@ export default function App() {
     return (
       <NavigationContainer>
         <MyHeader/>
-        <MyTabs />
+        <MyFooterBar />
       </NavigationContainer>
     )
   }
@@ -90,13 +87,3 @@ export default function App() {
     }
   })
 
-
-// const styles = StyleSheet.create({
-//   contentContainer: {
-//     flex: 1,
-//     backgroundColor: '#d3d3d3',
-//     justifyContent: 'center',
-//   },
-// });
-
-//141414 is the black color i like

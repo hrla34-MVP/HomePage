@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Alert, TouchableHighlight, } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 
 class BrianApp extends Component {
   constructor(props) {
@@ -10,9 +10,7 @@ class BrianApp extends Component {
   render() {
    return(
      <View>
-       <Text style={styles.Tester}>
-         Briananan
-       </Text>
+       <Text style={styles.Tester}>Hello</Text>
      </View>
    )
   }
@@ -21,7 +19,7 @@ class BrianApp extends Component {
 const styles = StyleSheet.create({
   Tester: {
     fontSize: 200
-  }
+  },
 })
 
 export default BrianApp;

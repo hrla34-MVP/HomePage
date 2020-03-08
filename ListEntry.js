@@ -9,9 +9,10 @@ class ListEntry extends Component {
     super(props);
 
     this.state = {
-      currentStatus: this.props.todo.status,
+      currentStatus: true,
       showEdit: false,
       modalVisible: false,
+      helloImHere: false,
     }
 
     this.onPressButton = this.onPressButton.bind(this);
@@ -53,27 +54,33 @@ class ListEntry extends Component {
   }
 
   render() {
+    // if (this.props.todo.icon === "school") {
+    //   this.setState({
+    //     helloImHere: true
+    //   })
+    // }
     return(
       <View>
       {!this.state.modalVisible ? (
         <Swipeable renderRightActions={this.RightAction} renderLeftActions={this.LeftAction}>
           <View style={styles.buttonStyle}>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={this.onPressButton}
               onLongPress={this.onLongPressButton}
               delayLongPress={150}
               underlayColor="white">
               <View>
-                {this.props.todo.helloImHere && this.state.currentStatus ? 
-                <MaterialCommunityIcons name={this.props.todo.image} color={'#1aff1a'} size={70} /> : (
-                this.state.currentStatus ? 
-                <MaterialCommunityIcons name={this.props.todo.image} color={'white'} size={70} /> :
-                <MaterialCommunityIcons name={this.props.todo.image} color={'#404040'} size={70} /> )}
-              </View> 
+              {/* this.props.todo.helloImHere  */}
+                {this.state.helloImHere && this.state.currentStatus ?
+                <MaterialCommunityIcons name={this.props.todo.icon} color={'#1aff1a'} size={70} /> : (
+                this.state.currentStatus ?
+                <MaterialCommunityIcons name={this.props.todo.icon} color={'white'} size={70} /> :
+                <MaterialCommunityIcons name={this.props.todo.icon} color={'#404040'} size={70} /> )}
+              </View>
             </TouchableOpacity>
           </View>
         </Swipeable>
-      ) : ( 
+      ) : (
         <View>
         <Modal
           animationType='fade'
@@ -87,13 +94,13 @@ class ListEntry extends Component {
               <MaterialCommunityIcons name="pencil-circle-outline" color={'green'} size={80} />
 
             </TouchableOpacity>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
               }}>
               {this.state.currentStatus ?
-                <MaterialCommunityIcons name={this.props.todo.image} color={'white'} size={160} /> :
-                <MaterialCommunityIcons name={this.props.todo.image} color={'#404040'} size={160} /> }
+                <MaterialCommunityIcons name={this.props.todo.icon} color={'white'} size={160} /> :
+                <MaterialCommunityIcons name={this.props.todo.icon} color={'#404040'} size={160} /> }
               </TouchableOpacity>
             <TouchableOpacity
               onPress={this.deleteTodo}
@@ -104,8 +111,8 @@ class ListEntry extends Component {
           </View>
         </Modal>
         </View>
-      )}  
-      </View> 
+      )}
+      </View>
     )
   }
 }

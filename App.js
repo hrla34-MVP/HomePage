@@ -8,6 +8,12 @@ import HomePage from './HomePage.js'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
+import taskDefiner from './FenceDefiner/taskDefiner.js';
+import * as TaskManager from 'expo-task-manager';
+
+// to set up the tasks!
+taskDefiner();
+
 const FooterBar = createBottomTabNavigator();
 
 function MyHeader() {
@@ -68,7 +74,7 @@ function MyFooterBar() {
 export default function App() {
     return (
       <NavigationContainer>
-        <MyHeader/>
+        {/* <MyHeader/> */}
         <MyFooterBar />
       </NavigationContainer>
     )
@@ -87,3 +93,29 @@ export default function App() {
     }
   })
 
+  TaskManager.defineTask('notification', (val) => {
+    let data = val.data;
+    let error = val.error;
+
+    let eventType = data.eventType;
+    let region = data.region;
+
+    // let parsedFromIdentifier = JSON.parse(region.identifier);
+
+
+
+    if (error) {
+      console.error(error.message);
+    }
+
+    // We are opting to just use default messages
+    if (eventType === Location.GeofencingEventType.Enter) {
+      // scheduleNotification(region, `You have entered ${region}`);
+    } else if (eventType === Location.GeofencingEventType.Exit) {
+      // scheduleNotification(region, `You have left ${region}`);
+    }
+
+    // This would have let us do custom messages
+    // scheduleNotification(parsedFromIdentifier.title, parsedFromIdentifier.body);
+
+  })

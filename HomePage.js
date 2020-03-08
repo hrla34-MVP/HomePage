@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, } from 'react-native';
 import List from './List.js';
 
+//server
+import gql from 'graphql-tag'
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+//address convert
+import * as Location from 'expo-location';
+
+// define location fences
+import fenceDefiner from './FenceDefiner/fenceDefiner.js';
+
 const exampleData = [
   {name: "home", helloImHere: false, status: false, image: 'home'},
   {name: "gym", helloImHere: false, status: true, image: 'dumbbell'},
@@ -12,6 +23,15 @@ const exampleData = [
   {name: "church", helloImHere: false, status: true, image: 'church'},
   {name: "BUHRYAN", helloImHere: false, status: true, image: 'home-account'}
 ]
+
+
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: 'https://geofencing-notification.herokuapp.com/graphql'
+    // uri: 'http://localhost:8000/graphql' --> for development / testing
+  }),
+  cache: new InMemoryCache()
+});
 
 class HomePage extends Component {
   constructor(props) {
@@ -25,10 +45,48 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      todos: exampleData
-    })
+
+    this.getAll()
+
+    // this.convertAddress(this.state.)
+
   }
+
+  getAll = function() {
+    client.query({
+      query: gql `
+      query areas {
+        areas {
+          name
+          latitude
+          longitude
+          radius
+          enter
+          exit
+          title
+          body
+          icon
+        }
+      }`
+    })
+    .then(response => this.setState({
+      todos : response.data.areas
+    }, () => {
+      console.log('This is the areas: \n',this.state.todos, 'anthony');
+      fenceDefiner(this.state.todos);
+    }));
+  };
+
+
+  convertAddress(lat, lng){
+    let myAddress = Location.reverseGeocodeAsync({
+      latitude: lat,
+      longitude: lng
+    })
+    let AddressStr = this._getAddress(myAddress[0])
+    return AddressStr;
+  }
+
 
 
   render() {

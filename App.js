@@ -7,12 +7,9 @@ import BrianApp from './BrianApp.js'
 import HomePage from './HomePage.js'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
-import taskDefiner from './FenceDefiner/taskDefiner.js';
 import * as TaskManager from 'expo-task-manager';
-
-// to set up the tasks!
-taskDefiner();
+import * as Location from 'expo-location';
+import {Notifications} from 'expo';
 
 const FooterBar = createBottomTabNavigator();
 
@@ -93,29 +90,80 @@ export default function App() {
     }
   })
 
-  TaskManager.defineTask('notification', (val) => {
-    let data = val.data;
-    let error = val.error;
+//   TaskManager.defineTask('notification', (val) => {
 
-    let eventType = data.eventType;
-    let region = data.region;
+//     let data = val.data;
+//     let error = val.error;
 
-    // let parsedFromIdentifier = JSON.parse(region.identifier);
+//     let eventType = data.eventType;
+//     let region = data.region.identifier;
+
+//     console.log(`This is our task being triggered: `, region);
+
+//     // let parsedFromIdentifier = JSON.parse(region.identifier);
+
+//     const localNotification = {
+//       title: '',
+//       body: '',
+//       android: {
+//         color: 'red'
+//       },
+//       ios: {
+//         sound: true
+//       }
+//     };
+//     const schedulingOptions = {time: Date.now() + 500};
+
+//     if (error) {
+//       console.error(error.message);
+//     }
+
+//     // We are opting to just use default messages
+//     if (eventType === Location.GeofencingEventType.Enter) {
+//       // scheduleNotification(region, `You have entered ${region}`);
+//       localNotification.title = region;
+//       localNotification.body = `You have entered ${region}`;
+
+//       Notifications.scheduleLocalNotificationAsync(
+//         localNotification,
+//         schedulingOptions
+//       );
+//     } else if (eventType === Location.GeofencingEventType.Exit) {
+//       // scheduleNotification(region, `You have left ${region}`);
+//       localNotification.title = region;
+//       localNotification.body = `You have left ${region}`;
+//       Notifications.scheduleLocalNotificationAsync(
+//         localNotification,
+//         schedulingOptions
+//       );
+//     }
+
+//     // This would have let us do custom messages
+//     // scheduleNotification(parsedFromIdentifier.title, parsedFromIdentifier.body);
+
+//   })
+
+// let scheduleNotification = (title, body)=> {
+//   console.log(`Notification being scheduled`);
 
 
+//   const localNotification = {
+//     title: title,
+//     body: body,
+//     android: {
+//       color: 'red'
+//     },
+//     ios: {
+//       sound: true
+//     }
+//   };
 
-    if (error) {
-      console.error(error.message);
-    }
+//   let notificationTime = Date.now() + 500;
 
-    // We are opting to just use default messages
-    if (eventType === Location.GeofencingEventType.Enter) {
-      // scheduleNotification(region, `You have entered ${region}`);
-    } else if (eventType === Location.GeofencingEventType.Exit) {
-      // scheduleNotification(region, `You have left ${region}`);
-    }
+//   const schedulingOptions = {time: notificationTime};
 
-    // This would have let us do custom messages
-    // scheduleNotification(parsedFromIdentifier.title, parsedFromIdentifier.body);
-
-  })
+//   let id = Notifications.scheduleLocalNotificationAsync(
+//     localNotification,
+//     schedulingOptions
+//   );
+// }

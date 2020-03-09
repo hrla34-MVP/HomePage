@@ -9,20 +9,22 @@ import { ApolloProvider } from 'react-apollo';
 
 //address convert
 import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
 // define location fences
 import fenceDefiner from './FenceDefiner/fenceDefiner.js';
 
-const exampleData = [
-  {name: "home", helloImHere: false, status: false, image: 'home'},
-  {name: "gym", helloImHere: false, status: true, image: 'dumbbell'},
-  {name: "work", helloImHere: true, status: true, image: 'office-building'},
-  {name: "qt", helloImHere: false, status: true, image: 'home-heart'},
-  {name: "coffee", helloImHere: false, status: true, image: 'coffee'},
-  {name: "school", helloImHere: false, status: true, image: 'school'},
-  {name: "church", helloImHere: false, status: true, image: 'church'},
-  {name: "BUHRYAN", helloImHere: false, status: true, image: 'home-account'}
-]
+
+// const exampleData = [
+//   {name: "home", helloImHere: false, status: false, image: 'home'},
+//   {name: "gym", helloImHere: false, status: true, image: 'dumbbell'},
+//   {name: "work", helloImHere: true, status: true, image: 'office-building'},
+//   {name: "qt", helloImHere: false, status: true, image: 'home-heart'},
+//   {name: "coffee", helloImHere: false, status: true, image: 'coffee'},
+//   {name: "school", helloImHere: false, status: true, image: 'school'},
+//   {name: "church", helloImHere: false, status: true, image: 'church'},
+//   {name: "BUHRYAN", helloImHere: false, status: true, image: 'home-account'}
+// ]
 
 
 const client = new ApolloClient({
@@ -45,11 +47,21 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    this._getLocationAsync();
 
     this.getAll()
 
     // this.convertAddress(this.state.)
 
+  }
+
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
   }
 
   getAll = function() {
@@ -72,8 +84,9 @@ class HomePage extends Component {
     .then(response => this.setState({
       todos : response.data.areas
     }, () => {
-      console.log('This is the areas: \n',this.state.todos, 'anthony');
-      fenceDefiner(this.state.todos);
+      console.log('**************** This is the areas (afterGetAll): \n',this.state.todos);
+      // fenceDefiner(this.state.todos);
+      fenceDefiner(exampleData);
     }));
   };
 
@@ -118,3 +131,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   }
 });
+
+
+let exampleData = [
+  {
+    name: 'Hack Reactor-',
+    longitude: -118.391144,
+    latitude: 33.975750,
+    radius: 50,
+    enter: true,
+    exit: true
+  },
+  {
+    name: 'UCLA-',
+    longitude: -118.45,
+    latitude: 34.07,
+    radius: 50,
+    enter: true,
+    exit: false
+  }
+]

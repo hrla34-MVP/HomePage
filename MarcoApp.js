@@ -20,6 +20,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 import * as TaskManager from 'expo-task-manager'
+import {Notifications} from 'expo';
 
 
 const client = new ApolloClient({
@@ -95,26 +96,8 @@ export default class MarcoApp extends React.Component {
       });
     } else {
       this._getLocationAsync();
-      // fenceDefiner([{
-      //   identifier: 'Hack Reactor',
-      //   longitude: -118.390868,
-      //   latitude: 33.976097,
-      //   radius: 100
-      // }]);
     }
 
-    // let {status} = await Permissions.askAsync(Permissions.LOCATION);
-
-    // if (status !== 'granted') {
-    //   alert('Permissions to access location was deined');
-    // } else {
-    //   fenceDefiner([{
-    //     identifier: 'Hack Reactor',
-    //     longitude: -118.390868,
-    //     latitude: 33.976097,
-    //     radius: 100
-    //   }]);
-    // }
   }
 // ------------------------------------------------------
   // server - get request
@@ -580,7 +563,7 @@ export default class MarcoApp extends React.Component {
             <View style={{ ...styles.conThree2, justifyContent: 'center',
             // alignItems: 'start',
             top: '20%' ,leftPadding: 10}}>
-              <Text style={{width: 300, color:'white', fontSize: 24}}>RESISTER AREA</Text>
+              <Text style={{width: 300, color:'white', fontSize: 24}}>REGISTER AREA</Text>
             </View>
           </View>
         </View>
@@ -640,7 +623,14 @@ export default class MarcoApp extends React.Component {
                   <Text style={{color: 'white'}}>CURRENT LOCATION +</Text>
                 </TouchableHighlight>
               </View>
-              <TouchableOpacity onPress={ ()=> { TaskManager.getRegisteredTasksAsync().then(val => console.log(JSON.stringify(val)))}}><Text style={{color: 'white'}}>GetAllRegisteredTasks</Text></TouchableOpacity>
+              {/* <TouchableOpacity onPress={ ()=> { 
+                  TaskManager.getRegisteredTasksAsync().then(val => console.log(`All Registered Tasks\n`,JSON.stringify(val)));
+                }}><Text style={{color: 'white'}}>GetAllRegisteredTasks</Text></TouchableOpacity>
+              <TouchableOpacity onPress={ ()=> { 
+                  Location.getCurrentPositionAsync({})
+                    .then(val => console.log(`location: `, val));
+
+                }}><Text style={{color: 'white'}}>GetAllRegisteredTasks</Text></TouchableOpacity> */}
               <View style={styles.conFour4}>
                 <TouchableHighlight
                   onPress={() => {
@@ -674,7 +664,7 @@ export default class MarcoApp extends React.Component {
                 async () => {
                   await this.postOne()
                   await this.getAll()
-              }}>RESISTER</Text>
+              }}>REGISTER</Text>
             </View>
           </View>
         </View>

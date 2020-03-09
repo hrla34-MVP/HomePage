@@ -10,6 +10,7 @@ import defineTask from './taskDefiner';
 * Always pass in an array of areas!
 */
 
+
 defineTask();
 
 let defineFences = (areas, taskName = 'notification') => {
@@ -27,10 +28,14 @@ let defineFences = (areas, taskName = 'notification') => {
     })
   });
 
+
   Location.startGeofencingAsync(taskName, formattedAreas)
-  .then(val => console.log(`Registered: ${taskName}`))
-  .catch(err => console.log(`Error: ${err}`))
+    .then(val => {
+      console.log('GeoFences Defined (defineFences): ', formattedAreas);
+    })
+    .catch(err => console.log(`Error: ${err}`))
 
 }
 
 export default defineFences;
+

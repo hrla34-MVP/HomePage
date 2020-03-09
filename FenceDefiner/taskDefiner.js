@@ -20,11 +20,23 @@ export default defineTask = (taskName = 'notification') => {
     let error = val.error;
 
     let eventType = data.eventType;
-    let region = data.region;
+    let region = data.region.identifier;
+
+    console.log(`This is our task being triggered: `, region);
 
     // let parsedFromIdentifier = JSON.parse(region.identifier);
 
-   
+    const localNotification = {
+      title: '',
+      body: '',
+      android: {
+        color: 'red'
+      },
+      ios: {
+        sound: true
+      }
+    };
+    const schedulingOptions = {time: Date.now() + 500};
 
     if (error) {
       console.error(error.message);
@@ -33,6 +45,7 @@ export default defineTask = (taskName = 'notification') => {
     // We are opting to just use default messages
     if (eventType === Location.GeofencingEventType.Enter) {
       scheduleNotification(region, `You have entered ${region}`);
+
     } else if (eventType === Location.GeofencingEventType.Exit) {
       scheduleNotification(region, `You have left ${region}`);
     }
@@ -50,11 +63,12 @@ export default defineTask = (taskName = 'notification') => {
 */
 
 let scheduleNotification = (title, body)=> {
+  console.log(`Notification Scheduled: ${title}`);
   const localNotification = {
     title: title,
     body: body,
     android: {
-      sound: true
+      color: 'red'
     },
     ios: {
       sound: true
